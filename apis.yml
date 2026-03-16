@@ -1,0 +1,47 @@
+aid: apache-pulsar
+name: Apache Pulsar
+description: >-
+  Apache Pulsar is a cloud-native, distributed messaging and streaming platform that provides server-to-server messaging with multi-tenancy, high performance, and geo-replication. It combines messaging and stream processing in a single platform.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Messaging
+  - Streaming
+  - Pub-Sub
+  - Multi-Tenant
+  - Cloud Native
+created: '2026-03-16'
+modified: '2026-03-16'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: apache-pulsar:apache-pulsar-admin-rest-api
+    name: Apache Pulsar Admin REST API
+    description: >-
+      The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, and cluster configuration.
+    humanURL: https://pulsar.apache.org/admin-rest-api/
+    tags:
+      - REST
+      - Administration
+      - Multi-Tenant
+    properties:
+      - type: Documentation
+        url: https://pulsar.apache.org/admin-rest-api/
+  - aid: apache-pulsar:apache-pulsar-client-api
+    name: Apache Pulsar Client API
+    description: >-
+      Pulsar provides client libraries in Java, Python, Go, C++, Node.js, and C# for producing and consuming messages, with support for schema registry, transactions, and Pulsar Functions for serverless stream processing.
+    humanURL: https://pulsar.apache.org/docs/next/client-libraries/
+    tags:
+      - SDK
+      - Messaging
+      - Streaming
+    properties:
+      - type: Documentation
+        url: https://pulsar.apache.org/docs/next/client-libraries/
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
