@@ -1,0 +1,155 @@
+asyncapi: 2.6.0
+info:
+  title: Apache Pulsar Messaging API
+  version: 3.3.0
+  description: >-
+    Apache Pulsar is a cloud-native, multi-tenant, high-performance messaging
+    and streaming platform. This spec describes the messaging patterns for
+    producing and consuming messages on Pulsar topics with support for
+    multiple subscription types and schema enforcement.
+  contact:
+    name: Apache Pulsar
+    url: https://pulsar.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  default:
+    url: pulsar://localhost:6650
+    protocol: pulsar
+    description: Default Pulsar binary protocol endpoint
+  websocket:
+    url: ws://localhost:8080/ws/v2
+    protocol: ws
+    description: Pulsar WebSocket API endpoint
+defaultContentType: application/json
+channels:
+  'persistent/{tenant}/{namespace}/{topic}':
+    description: >-
+      A persistent Pulsar topic. Messages are durably stored in Apache BookKeeper
+      and available for replay. Supports partitioned and non-partitioned topics.
+    parameters:
+      tenant:
+        description: The tenant name
+        schema:
+          type: string
+      namespace:
+        description: The namespace within the tenant
+        schema:
+          type: string
+      topic:
+        description: The topic name
+        schema:
+          type: string
+    publish:
+      operationId: produceMessage
+      summary: Produce a message to a Pulsar topic
+      description: >-
+        Producers publish messages to topics. Each message can include a key,
+        properties (headers), event time, and a schema-validated payload.
+      message:
+        $ref: '#/components/messages/PulsarMessage'
+    subscribe:
+      operationId: consumeMessage
+      summary: Consume messages from a Pulsar topic
+      description: >-
+        Consumers subscribe to topics using one of four subscription types:
+        Exclusive, Shared, Failover, or Key_Shared.
+      message:
+        $ref: '#/components/messages/PulsarMessage'
+      bindings:
+        pulsar:
+          subscriptionType:
+            type: string
+            enum: [Exclusive, Shared, Failover, Key_Shared]
+  'non-persistent/{tenant}/{namespace}/{topic}':
+    description: >-
+      A non-persistent Pulsar topic. Messages are not stored to disk and are
+      only delivered to currently connected consumers. Offers lower latency
+      at the cost of durability.
+    parameters:
+      tenant:
+        schema:
+          type: string
+      namespace:
+        schema:
+          type: string
+      topic:
+        schema:
+          type: string
+    publish:
+      operationId: produceNonPersistentMessage
+      summary: Produce a message to a non-persistent topic
+      message:
+        $ref: '#/components/messages/PulsarMessage'
+    subscribe:
+      operationId: consumeNonPersistentMessage
+      summary: Consume from a non-persistent topic
+      message:
+        $ref: '#/components/messages/PulsarMessage'
+components:
+  messages:
+    PulsarMessage:
+      name: PulsarMessage
+      title: Pulsar Message
+      summary: A message in Apache Pulsar
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          X-Pulsar-Message-Id:
+            type: string
+            description: Unique message ID (ledgerId:entryId:partitionIndex)
+          X-Pulsar-Publish-Time:
+            type: string
+            format: date-time
+          X-Pulsar-Event-Time:
+            type: string
+            format: date-time
+          X-Pulsar-Sequence-Id:
+            type: integer
+          X-Pulsar-Producer-Name:
+            type: string
+          X-Pulsar-Partition-Key:
+            type: string
+          X-Pulsar-Ordering-Key:
+            type: string
+        additionalProperties:
+          type: string
+          description: User-defined message properties
+      payload:
+        type: object
+        description: The message payload (schema-enforced if a schema is registered)
+  schemas:
+    MessageId:
+      type: object
+      properties:
+        ledgerId:
+          type: integer
+        entryId:
+          type: integer
+        partitionIndex:
+          type: integer
+    SubscriptionConfig:
+      type: object
+      properties:
+        subscriptionName:
+          type: string
+        subscriptionType:
+          type: string
+          enum: [Exclusive, Shared, Failover, Key_Shared]
+        receiverQueueSize:
+          type: integer
+        ackTimeoutMillis:
+          type: integer
+        negativeAckRedeliveryDelayMillis:
+          type: integer
+        deadLetterPolicy:
+          type: object
+          properties:
+            maxRedeliverCount:
+              type: integer
+            deadLetterTopic:
+              type: string
+            initialSubscriptionName:
+              type: string

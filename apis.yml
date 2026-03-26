@@ -13,7 +13,7 @@ tags:
   - Multi-Tenant
   - Cloud Native
 created: '2026-03-16'
-modified: '2026-03-16'
+modified: '2026-03-26'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/apis.yml
 specificationVersion: '0.19'
@@ -21,8 +21,10 @@ apis:
   - aid: apache-pulsar:apache-pulsar-admin-rest-api
     name: Apache Pulsar Admin REST API
     description: >-
-      The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, and cluster configuration.
+      The Pulsar Admin API provides REST endpoints for managing tenants, namespaces,
+      topics, subscriptions, functions, connectors, and cluster configuration.
     humanURL: https://pulsar.apache.org/admin-rest-api/
+    baseURL: http://localhost:8080/admin/v2
     tags:
       - REST
       - Administration
@@ -30,18 +32,26 @@ apis:
     properties:
       - type: Documentation
         url: https://pulsar.apache.org/admin-rest-api/
-  - aid: apache-pulsar:apache-pulsar-client-api
-    name: Apache Pulsar Client API
+      - type: OpenAPI
+        url: openapi/pulsar-admin.yml
+  - aid: apache-pulsar:apache-pulsar-messaging-api
+    name: Apache Pulsar Messaging API
     description: >-
-      Pulsar provides client libraries in Java, Python, Go, C++, Node.js, and C# for producing and consuming messages, with support for schema registry, transactions, and Pulsar Functions for serverless stream processing.
+      Pulsar messaging protocol for producing and consuming messages on topics,
+      with support for multiple subscription types (Exclusive, Shared, Failover,
+      Key_Shared), schema enforcement, and both persistent and non-persistent topics.
     humanURL: https://pulsar.apache.org/docs/next/client-libraries/
     tags:
-      - SDK
       - Messaging
       - Streaming
+      - Pub-Sub
     properties:
       - type: Documentation
         url: https://pulsar.apache.org/docs/next/client-libraries/
+      - type: AsyncAPI
+        url: asyncapi/pulsar-messaging.yml
+      - type: JSONSchema
+        url: json-schema/pulsar-message.json
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
