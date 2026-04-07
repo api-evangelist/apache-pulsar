@@ -7,11 +7,11 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Messaging
-  - Streaming
-  - Pub-Sub
-  - Multi-Tenant
   - Cloud Native
+  - Messaging
+  - Multi-Tenant
+  - Pub-Sub
+  - Streaming
 created: '2026-03-16'
 modified: '2026-03-26'
 url: >-
@@ -26,9 +26,9 @@ apis:
     humanURL: https://pulsar.apache.org/admin-rest-api/
     baseURL: http://localhost:8080/admin/v2
     tags:
-      - REST
       - Administration
       - Multi-Tenant
+      - REST
     properties:
       - type: Documentation
         url: https://pulsar.apache.org/admin-rest-api/
@@ -43,8 +43,8 @@ apis:
     humanURL: https://pulsar.apache.org/docs/next/client-libraries/
     tags:
       - Messaging
-      - Streaming
       - Pub-Sub
+      - Streaming
     properties:
       - type: Documentation
         url: https://pulsar.apache.org/docs/next/client-libraries/
