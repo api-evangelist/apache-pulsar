@@ -1,0 +1,72 @@
+name: Apache Pulsar Messaging Workflow
+description: Workflow capability for managing topics, subscriptions, and message streaming with Apache Pulsar.
+version: 1.0.0-alpha1
+apis:
+  - name: Apache Pulsar Admin REST API
+    url: https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/apis.yml
+shared:
+  - url: capabilities/shared/pulsar-api.yaml
+workflow:
+  name: pulsar-workflow
+  description: Manage Pulsar tenants, namespaces, topics, and message producers/consumers.
+  steps:
+    - name: create-tenant
+      description: Create a new Pulsar tenant
+      api: Apache Pulsar Admin REST API
+      operation: createTenant
+    - name: create-namespace
+      description: Create a namespace within a tenant
+      api: Apache Pulsar Admin REST API
+      operation: createNamespace
+    - name: create-topic
+      description: Create a Pulsar topic
+      api: Apache Pulsar Admin REST API
+      operation: createTopic
+    - name: get-topic-stats
+      description: Get statistics for a Pulsar topic
+      api: Apache Pulsar Admin REST API
+      operation: getTopicStats
+    - name: publish-message
+      description: Publish a message to a topic
+      api: Apache Pulsar Messaging API
+      operation: publishMessage
+    - name: consume-message
+      description: Consume messages from a subscription
+      api: Apache Pulsar Messaging API
+      operation: consumeMessage
+exposes:
+  - type: rest
+    port: 8080
+    paths:
+      - /admin/v2/clusters
+      - /admin/v2/tenants
+      - /admin/v2/namespaces/{tenant}
+      - /admin/v2/persistent/{tenant}/{namespace}
+      - /admin/v2/functions
+  - type: mcp
+    port: 9090
+    tools:
+      - name: list-clusters
+        description: List Pulsar clusters
+        operation: listClusters
+      - name: create-tenant
+        description: Create a Pulsar tenant
+        operation: createTenant
+      - name: create-namespace
+        description: Create a namespace
+        operation: createNamespace
+      - name: create-topic
+        description: Create a Pulsar topic
+        operation: createTopic
+      - name: get-topic-stats
+        description: Get topic statistics
+        operation: getTopicStats
+      - name: list-subscriptions
+        description: List topic subscriptions
+        operation: listSubscriptions
+      - name: create-function
+        description: Deploy a Pulsar function
+        operation: createFunction
+      - name: get-function-status
+        description: Get Pulsar function status
+        operation: getFunctionStatus

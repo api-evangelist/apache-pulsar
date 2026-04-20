@@ -1,0 +1,63 @@
+name: Apache Pulsar Vocabulary
+description: Unified taxonomy mapping messaging and streaming resources, actions, workflows, and personas for Apache Pulsar.
+version: 1.0.0
+operational:
+  apis:
+    - name: Apache Pulsar Admin REST API
+      description: REST API for managing tenants, namespaces, topics, and functions
+    - name: Apache Pulsar Messaging API
+      description: AsyncAPI for producing and consuming Pulsar messages
+  resources:
+    - name: Cluster
+      description: Pulsar cluster consisting of brokers and bookies
+    - name: Tenant
+      description: Administrative unit for multi-tenancy isolation
+    - name: Namespace
+      description: Grouping of topics within a tenant
+    - name: Topic
+      description: Pulsar topic for messaging (persistent or non-persistent)
+    - name: Subscription
+      description: Consumer subscription to a topic
+    - name: Message
+      description: Unit of data published to or consumed from a topic
+    - name: Function
+      description: Lightweight serverless compute on message streams
+  actions:
+    - name: Produce
+      description: Publish messages to a Pulsar topic
+    - name: Consume
+      description: Subscribe to and receive messages from a topic
+    - name: Manage
+      description: Administer tenants, namespaces, and topics
+    - name: Deploy
+      description: Deploy Pulsar Functions for stream processing
+  authentication:
+    - name: JWT
+      description: JSON Web Token authentication for clients
+    - name: TLS
+      description: TLS mutual authentication
+capability:
+  workflows:
+    - name: Messaging Workflow
+      description: End-to-end workflow for producing and consuming Pulsar messages
+    - name: Admin Workflow
+      description: Workflow for managing Pulsar cluster resources
+  personas:
+    - name: Platform Engineer
+      description: Engineer managing Pulsar clusters and multi-tenancy
+    - name: Application Developer
+      description: Developer producing and consuming messages with Pulsar
+    - name: Data Engineer
+      description: Engineer building real-time streaming pipelines with Pulsar
+  domains:
+    - name: Messaging
+      description: Real-time message delivery between producers and consumers
+    - name: Stream Processing
+      description: Processing message streams with Pulsar Functions
+  crossReference:
+    - name: Apache Kafka
+      description: Alternative messaging platform
+    - name: RabbitMQ
+      description: Alternative message broker
+    - name: Apache Flink
+      description: Stream processing engine integrated with Pulsar

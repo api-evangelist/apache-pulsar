@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/json-structure/apache-pulsar-topic-stats-structure.json",
+  "description": "TopicStats schema from Apache Pulsar",
+  "type": "object",
+  "properties": {
+    "msgRateIn": {
+      "type": "double"
+    },
+    "msgRateOut": {
+      "type": "double"
+    },
+    "msgThroughputIn": {
+      "type": "double"
+    },
+    "msgThroughputOut": {
+      "type": "double"
+    },
+    "averageMsgSize": {
+      "type": "double"
+    },
+    "storageSize": {
+      "type": "int32"
+    },
+    "backlogSize": {
+      "type": "int32"
+    },
+    "publishers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "msgRateIn": {
+            "type": "double"
+          },
+          "msgThroughputIn": {
+            "type": "double"
+          },
+          "producerName": {
+            "type": "string"
+          },
+          "producerId": {
+            "type": "int32"
+          }
+        }
+      }
+    },
+    "subscriptions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "msgRateOut": {
+            "type": "number"
+          },
+          "msgThroughputOut": {
+            "type": "number"
+          },
+          "msgBacklog": {
+            "type": "integer"
+          },
+          "consumers": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "name": "TopicStats"
+}

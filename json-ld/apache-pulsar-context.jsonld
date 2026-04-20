@@ -1,0 +1,219 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "puls": "https://pulsar.apache.org/schema/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ClusterData": "puls:ClusterData",
+    "TenantInfo": "puls:TenantInfo",
+    "Policies": "puls:Policies",
+    "RetentionPolicies": "puls:RetentionPolicies",
+    "TopicStats": "puls:TopicStats",
+    "FunctionConfig": "puls:FunctionConfig",
+    "PulsarMessage": "puls:PulsarMessage",
+    "serviceUrl": {
+      "@id": "puls:serviceUrl",
+      "@type": "xsd:string"
+    },
+    "serviceUrlTls": {
+      "@id": "puls:serviceUrlTls",
+      "@type": "xsd:string"
+    },
+    "brokerServiceUrl": {
+      "@id": "puls:brokerServiceUrl",
+      "@type": "xsd:string"
+    },
+    "brokerServiceUrlTls": {
+      "@id": "puls:brokerServiceUrlTls",
+      "@type": "xsd:string"
+    },
+    "peerClusterNames": {
+      "@id": "puls:peerClusterNames",
+      "@container": "@set"
+    },
+    "adminRoles": {
+      "@id": "puls:adminRoles",
+      "@container": "@set"
+    },
+    "allowedClusters": {
+      "@id": "puls:allowedClusters",
+      "@container": "@set"
+    },
+    "replication_clusters": {
+      "@id": "puls:replication_clusters",
+      "@container": "@set"
+    },
+    "bundles": {
+      "@id": "puls:bundles",
+      "@type": "xsd:string"
+    },
+    "retention_policies": {
+      "@id": "puls:retention_policies",
+      "@type": "xsd:string"
+    },
+    "schema_auto_update_compatibility_strategy": {
+      "@id": "puls:schema_auto_update_compatibility_strategy",
+      "@type": "xsd:string"
+    },
+    "message_ttl_in_seconds": {
+      "@id": "puls:message_ttl_in_seconds",
+      "@type": "xsd:integer"
+    },
+    "max_producers_per_topic": {
+      "@id": "puls:max_producers_per_topic",
+      "@type": "xsd:integer"
+    },
+    "max_consumers_per_topic": {
+      "@id": "puls:max_consumers_per_topic",
+      "@type": "xsd:integer"
+    },
+    "max_consumers_per_subscription": {
+      "@id": "puls:max_consumers_per_subscription",
+      "@type": "xsd:integer"
+    },
+    "backlog_quota_map": {
+      "@id": "puls:backlog_quota_map",
+      "@type": "xsd:string"
+    },
+    "retentionTimeInMinutes": {
+      "@id": "puls:retentionTimeInMinutes",
+      "@type": "xsd:integer"
+    },
+    "retentionSizeInMB": {
+      "@id": "puls:retentionSizeInMB",
+      "@type": "xsd:integer"
+    },
+    "msgRateIn": {
+      "@id": "puls:msgRateIn",
+      "@type": "xsd:decimal"
+    },
+    "msgRateOut": {
+      "@id": "puls:msgRateOut",
+      "@type": "xsd:decimal"
+    },
+    "msgThroughputIn": {
+      "@id": "puls:msgThroughputIn",
+      "@type": "xsd:decimal"
+    },
+    "msgThroughputOut": {
+      "@id": "puls:msgThroughputOut",
+      "@type": "xsd:decimal"
+    },
+    "averageMsgSize": {
+      "@id": "puls:averageMsgSize",
+      "@type": "xsd:decimal"
+    },
+    "storageSize": {
+      "@id": "puls:storageSize",
+      "@type": "xsd:integer"
+    },
+    "backlogSize": {
+      "@id": "puls:backlogSize",
+      "@type": "xsd:integer"
+    },
+    "publishers": {
+      "@id": "puls:publishers",
+      "@container": "@set"
+    },
+    "subscriptions": {
+      "@id": "puls:subscriptions",
+      "@type": "xsd:string"
+    },
+    "tenant": {
+      "@id": "puls:tenant",
+      "@type": "xsd:string"
+    },
+    "namespace": {
+      "@id": "puls:namespace",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "puls:name",
+      "@type": "schema:name"
+    },
+    "className": {
+      "@id": "puls:className",
+      "@type": "xsd:string"
+    },
+    "inputs": {
+      "@id": "puls:inputs",
+      "@container": "@set"
+    },
+    "output": {
+      "@id": "puls:output",
+      "@type": "xsd:string"
+    },
+    "logTopic": {
+      "@id": "puls:logTopic",
+      "@type": "xsd:string"
+    },
+    "processingGuarantees": {
+      "@id": "puls:processingGuarantees",
+      "@type": "xsd:string"
+    },
+    "parallelism": {
+      "@id": "puls:parallelism",
+      "@type": "xsd:integer"
+    },
+    "runtime": {
+      "@id": "puls:runtime",
+      "@type": "xsd:string"
+    },
+    "autoAck": {
+      "@id": "puls:autoAck",
+      "@type": "xsd:boolean"
+    },
+    "userConfig": {
+      "@id": "puls:userConfig",
+      "@type": "xsd:string"
+    },
+    "messageId": {
+      "@id": "puls:messageId",
+      "@type": "xsd:string"
+    },
+    "payload": {
+      "@id": "puls:payload",
+      "@type": "xsd:string"
+    },
+    "key": {
+      "@id": "puls:key",
+      "@type": "xsd:string"
+    },
+    "orderingKey": {
+      "@id": "puls:orderingKey",
+      "@type": "xsd:string"
+    },
+    "properties": {
+      "@id": "puls:properties",
+      "@type": "xsd:string"
+    },
+    "publishTime": {
+      "@id": "puls:publishTime",
+      "@type": "xsd:string"
+    },
+    "eventTime": {
+      "@id": "puls:eventTime",
+      "@type": "xsd:string"
+    },
+    "sequenceId": {
+      "@id": "puls:sequenceId",
+      "@type": "xsd:integer"
+    },
+    "producerName": {
+      "@id": "puls:producerName",
+      "@type": "xsd:string"
+    },
+    "redeliveryCount": {
+      "@id": "puls:redeliveryCount",
+      "@type": "xsd:integer"
+    },
+    "schemaVersion": {
+      "@id": "puls:schemaVersion",
+      "@type": "xsd:string"
+    },
+    "topic": {
+      "@id": "puls:topic",
+      "@type": "xsd:string"
+    }
+  }
+}

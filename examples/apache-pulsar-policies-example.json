@@ -1,0 +1,13 @@
+{
+  "replication_clusters": [
+    "example"
+  ],
+  "bundles": {},
+  "retention_policies": {},
+  "schema_auto_update_compatibility_strategy": "2026-04-19T10:00:00Z",
+  "message_ttl_in_seconds": 1234,
+  "max_producers_per_topic": 1234,
+  "max_consumers_per_topic": 1234,
+  "max_consumers_per_subscription": 1234,
+  "backlog_quota_map": {}
+}

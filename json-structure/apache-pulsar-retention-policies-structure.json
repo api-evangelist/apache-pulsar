@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/json-structure/apache-pulsar-retention-policies-structure.json",
+  "description": "RetentionPolicies schema from Apache Pulsar",
+  "type": "object",
+  "properties": {
+    "retentionTimeInMinutes": {
+      "type": "int32"
+    },
+    "retentionSizeInMB": {
+      "type": "int32"
+    }
+  },
+  "name": "RetentionPolicies"
+}

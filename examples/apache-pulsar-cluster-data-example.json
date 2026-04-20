@@ -1,0 +1,9 @@
+{
+  "serviceUrl": "https://example.com",
+  "serviceUrlTls": "https://example.com",
+  "brokerServiceUrl": "https://example.com",
+  "brokerServiceUrlTls": "https://example.com",
+  "peerClusterNames": [
+    "example"
+  ]
+}

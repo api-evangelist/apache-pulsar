@@ -1,0 +1,18 @@
+{
+  "msgRateIn": 0.5,
+  "msgRateOut": 0.5,
+  "msgThroughputIn": 0.5,
+  "msgThroughputOut": 0.5,
+  "averageMsgSize": 0.5,
+  "storageSize": 1234,
+  "backlogSize": 1234,
+  "publishers": [
+    {
+      "msgRateIn": 0.5,
+      "msgThroughputIn": 0.5,
+      "producerName": "example-name",
+      "producerId": 1234
+    }
+  ],
+  "subscriptions": {}
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/json-schema/apache-pulsar-cluster-data-schema.json",
+  "title": "ClusterData",
+  "description": "ClusterData schema from Apache Pulsar",
+  "type": "object",
+  "properties": {
+    "serviceUrl": {
+      "type": "string"
+    },
+    "serviceUrlTls": {
+      "type": "string"
+    },
+    "brokerServiceUrl": {
+      "type": "string"
+    },
+    "brokerServiceUrlTls": {
+      "type": "string"
+    },
+    "peerClusterNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

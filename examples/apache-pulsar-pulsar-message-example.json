@@ -1,0 +1,14 @@
+{
+  "messageId": "500123",
+  "payload": {},
+  "key": "example",
+  "orderingKey": "example",
+  "properties": {},
+  "publishTime": "2026-04-19T10:00:00Z",
+  "eventTime": "2026-04-19T10:00:00Z",
+  "sequenceId": 1234,
+  "producerName": "example-name",
+  "redeliveryCount": 1234,
+  "schemaVersion": "example",
+  "topic": "example"
+}

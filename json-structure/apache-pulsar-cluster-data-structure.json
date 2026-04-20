@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/json-structure/apache-pulsar-cluster-data-structure.json",
+  "description": "ClusterData schema from Apache Pulsar",
+  "type": "object",
+  "properties": {
+    "serviceUrl": {
+      "type": "string"
+    },
+    "serviceUrlTls": {
+      "type": "string"
+    },
+    "brokerServiceUrl": {
+      "type": "string"
+    },
+    "brokerServiceUrlTls": {
+      "type": "string"
+    },
+    "peerClusterNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "name": "ClusterData"
+}

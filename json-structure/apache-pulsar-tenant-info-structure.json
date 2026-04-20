@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/json-structure/apache-pulsar-tenant-info-structure.json",
+  "description": "TenantInfo schema from Apache Pulsar",
+  "type": "object",
+  "properties": {
+    "adminRoles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowedClusters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "name": "TenantInfo"
+}

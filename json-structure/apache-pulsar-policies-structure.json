@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/json-structure/apache-pulsar-policies-structure.json",
+  "description": "Policies schema from Apache Pulsar",
+  "type": "object",
+  "properties": {
+    "replication_clusters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bundles": {
+      "type": "object"
+    },
+    "retention_policies": {
+      "$ref": "#/components/schemas/RetentionPolicies"
+    },
+    "schema_auto_update_compatibility_strategy": {
+      "type": "string"
+    },
+    "message_ttl_in_seconds": {
+      "type": "int32"
+    },
+    "max_producers_per_topic": {
+      "type": "int32"
+    },
+    "max_consumers_per_topic": {
+      "type": "int32"
+    },
+    "max_consumers_per_subscription": {
+      "type": "int32"
+    },
+    "backlog_quota_map": {
+      "type": "object"
+    }
+  },
+  "name": "Policies"
+}

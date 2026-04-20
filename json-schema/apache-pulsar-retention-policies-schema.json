@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/json-schema/apache-pulsar-retention-policies-schema.json",
+  "title": "RetentionPolicies",
+  "description": "RetentionPolicies schema from Apache Pulsar",
+  "type": "object",
+  "properties": {
+    "retentionTimeInMinutes": {
+      "type": "integer"
+    },
+    "retentionSizeInMB": {
+      "type": "integer"
+    }
+  }
+}

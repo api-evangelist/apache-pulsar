@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/json-structure/apache-pulsar-function-config-structure.json",
+  "description": "FunctionConfig schema from Apache Pulsar",
+  "type": "object",
+  "properties": {
+    "tenant": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "output": {
+      "type": "string"
+    },
+    "logTopic": {
+      "type": "string"
+    },
+    "processingGuarantees": {
+      "type": "string",
+      "enum": [
+        "ATLEAST_ONCE",
+        "ATMOST_ONCE",
+        "EFFECTIVELY_ONCE"
+      ]
+    },
+    "parallelism": {
+      "type": "int32"
+    },
+    "runtime": {
+      "type": "string",
+      "enum": [
+        "JAVA",
+        "PYTHON",
+        "GO"
+      ]
+    },
+    "autoAck": {
+      "type": "boolean"
+    },
+    "userConfig": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "name": "FunctionConfig"
+}

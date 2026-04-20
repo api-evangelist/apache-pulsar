@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/json-structure/apache-pulsar-pulsar-message-structure.json",
+  "description": "Schema for an Apache Pulsar message including metadata and payload.",
+  "type": "object",
+  "properties": {
+    "messageId": {
+      "type": "string",
+      "description": "Unique message ID in format ledgerId:entryId:partitionIndex"
+    },
+    "payload": {
+      "description": "The message payload, encoded according to the topic schema"
+    },
+    "key": {
+      "type": "string",
+      "description": "Message key used for topic compaction and Key_Shared subscriptions"
+    },
+    "orderingKey": {
+      "type": "string",
+      "description": "Ordering key for Key_Shared subscription ordering"
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "User-defined key-value properties attached to the message"
+    },
+    "publishTime": {
+      "type": "datetime",
+      "description": "Timestamp when the message was published"
+    },
+    "eventTime": {
+      "type": "datetime",
+      "description": "Application-defined event time"
+    },
+    "sequenceId": {
+      "type": "int32",
+      "description": "Sequence ID for deduplication"
+    },
+    "producerName": {
+      "type": "string",
+      "description": "Name of the producer that published the message"
+    },
+    "redeliveryCount": {
+      "type": "int32",
+      "description": "Number of times the message has been redelivered"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "description": "Schema version used to encode the message"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Full topic name (persistent://tenant/namespace/topic)"
+    }
+  },
+  "name": "PulsarMessage"
+}

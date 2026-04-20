@@ -1,0 +1,16 @@
+{
+  "tenant": "example",
+  "namespace": "example-name",
+  "name": "example-name",
+  "className": "example-name",
+  "inputs": [
+    "example"
+  ],
+  "output": "example",
+  "logTopic": "example",
+  "processingGuarantees": "ATLEAST_ONCE",
+  "parallelism": 1234,
+  "runtime": "JAVA",
+  "autoAck": true,
+  "userConfig": {}
+}
