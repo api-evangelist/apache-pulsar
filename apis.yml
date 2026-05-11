@@ -55,6 +55,11 @@ apis:
     url: asyncapi/pulsar-messaging.yml
   - type: JSONSchema
     url: json-schema/pulsar-message.json
+integrations:
+  - name: Apache Pulsar
+  - name: Slack
+  - name: GitHub
+  - name: Pulsar
 maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
@@ -109,3 +114,5 @@ common:
     description: Native Kubernetes deployment via Helm charts
   - name: Grafana
     description: Built-in metrics exposed to Prometheus and Grafana
+- type: Integrations
+  url: https://pulsar.apache.org/ecosystem/
