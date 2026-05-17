@@ -74,7 +74,7 @@ common:
   url: vocabulary/apache-pulsar-vocabulary.yaml
 - type: NaftikoCapability
   url: capabilities/pulsar-workflow.yaml
-- type: JSON-LD
+- type: JSONLD
   url: json-ld/apache-pulsar-context.jsonld
 - type: Features
   data:
