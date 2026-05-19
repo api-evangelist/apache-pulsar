@@ -1,0 +1,234 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Pulsar Admin REST API — Functions
+  description: 'Apache Pulsar Admin REST API — Functions. 4 operations. Lead operation: List functions. Self-contained Naftiko
+    capability covering one Apache Pulsar business surface.'
+  tags:
+  - Apache Pulsar
+  - Functions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_PULSAR_API_KEY: APACHE_PULSAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pulsar-admin-functions
+    baseUri: http://localhost:8080/admin/v2
+    description: Apache Pulsar Admin REST API — Functions business capability. Self-contained, no shared references.
+    resources:
+    - name: functions-tenant-namespace
+      path: /functions/{tenant}/{namespace}
+      operations:
+      - name: listfunctions
+        method: GET
+        description: List functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenant
+          in: path
+          type: string
+          required: true
+        - name: namespace
+          in: path
+          type: string
+          required: true
+    - name: functions-tenant-namespace-functionName
+      path: /functions/{tenant}/{namespace}/{functionName}
+      operations:
+      - name: getfunctioninfo
+        method: GET
+        description: Get function info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenant
+          in: path
+          type: string
+          required: true
+        - name: namespace
+          in: path
+          type: string
+          required: true
+        - name: functionName
+          in: path
+          type: string
+          required: true
+      - name: deletefunction
+        method: DELETE
+        description: Delete function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenant
+          in: path
+          type: string
+          required: true
+        - name: namespace
+          in: path
+          type: string
+          required: true
+        - name: functionName
+          in: path
+          type: string
+          required: true
+    - name: functions-tenant-namespace-functionName-status
+      path: /functions/{tenant}/{namespace}/{functionName}/status
+      operations:
+      - name: getfunctionstatus
+        method: GET
+        description: Get function status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenant
+          in: path
+          type: string
+          required: true
+        - name: namespace
+          in: path
+          type: string
+          required: true
+        - name: functionName
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: pulsar-admin-functions-rest
+    port: 8080
+    description: REST adapter for Apache Pulsar Admin REST API — Functions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/functions/{tenant}/{namespace}
+      name: functions-tenant-namespace
+      description: REST surface for functions-tenant-namespace.
+      operations:
+      - method: GET
+        name: listfunctions
+        description: List functions
+        call: pulsar-admin-functions.listfunctions
+        with:
+          tenant: rest.tenant
+          namespace: rest.namespace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/functions/{tenant}/{namespace}/{functionname}
+      name: functions-tenant-namespace-functionname
+      description: REST surface for functions-tenant-namespace-functionName.
+      operations:
+      - method: GET
+        name: getfunctioninfo
+        description: Get function info
+        call: pulsar-admin-functions.getfunctioninfo
+        with:
+          tenant: rest.tenant
+          namespace: rest.namespace
+          functionName: rest.functionName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletefunction
+        description: Delete function
+        call: pulsar-admin-functions.deletefunction
+        with:
+          tenant: rest.tenant
+          namespace: rest.namespace
+          functionName: rest.functionName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/functions/{tenant}/{namespace}/{functionname}/status
+      name: functions-tenant-namespace-functionname-status
+      description: REST surface for functions-tenant-namespace-functionName-status.
+      operations:
+      - method: GET
+        name: getfunctionstatus
+        description: Get function status
+        call: pulsar-admin-functions.getfunctionstatus
+        with:
+          tenant: rest.tenant
+          namespace: rest.namespace
+          functionName: rest.functionName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pulsar-admin-functions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Pulsar Admin REST API — Functions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-functions
+      description: List functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pulsar-admin-functions.listfunctions
+      with:
+        tenant: tools.tenant
+        namespace: tools.namespace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-function-info
+      description: Get function info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pulsar-admin-functions.getfunctioninfo
+      with:
+        tenant: tools.tenant
+        namespace: tools.namespace
+        functionName: tools.functionName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-function
+      description: Delete function
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: pulsar-admin-functions.deletefunction
+      with:
+        tenant: tools.tenant
+        namespace: tools.namespace
+        functionName: tools.functionName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-function-status
+      description: Get function status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pulsar-admin-functions.getfunctionstatus
+      with:
+        tenant: tools.tenant
+        namespace: tools.namespace
+        functionName: tools.functionName
+      outputParameters:
+      - type: object
+        mapping: $.

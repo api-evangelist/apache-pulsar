@@ -1,0 +1,211 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Pulsar Admin REST API — Subscriptions
+  description: 'Apache Pulsar Admin REST API — Subscriptions. 3 operations. Lead operation: Create subscription. Self-contained
+    Naftiko capability covering one Apache Pulsar business surface.'
+  tags:
+  - Apache Pulsar
+  - Subscriptions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_PULSAR_API_KEY: APACHE_PULSAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pulsar-admin-subscriptions
+    baseUri: http://localhost:8080/admin/v2
+    description: Apache Pulsar Admin REST API — Subscriptions business capability. Self-contained, no shared references.
+    resources:
+    - name: persistent-tenant-namespace-topic-subscription-subName
+      path: /persistent/{tenant}/{namespace}/{topic}/subscription/{subName}
+      operations:
+      - name: createsubscription
+        method: PUT
+        description: Create subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenant
+          in: path
+          type: string
+          required: true
+        - name: namespace
+          in: path
+          type: string
+          required: true
+        - name: topic
+          in: path
+          type: string
+          required: true
+        - name: subName
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletesubscription
+        method: DELETE
+        description: Delete subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenant
+          in: path
+          type: string
+          required: true
+        - name: namespace
+          in: path
+          type: string
+          required: true
+        - name: topic
+          in: path
+          type: string
+          required: true
+        - name: subName
+          in: path
+          type: string
+          required: true
+        - name: force
+          in: query
+          type: boolean
+    - name: persistent-tenant-namespace-topic-subscriptions
+      path: /persistent/{tenant}/{namespace}/{topic}/subscriptions
+      operations:
+      - name: listsubscriptions
+        method: GET
+        description: List subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenant
+          in: path
+          type: string
+          required: true
+        - name: namespace
+          in: path
+          type: string
+          required: true
+        - name: topic
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: pulsar-admin-subscriptions-rest
+    port: 8080
+    description: REST adapter for Apache Pulsar Admin REST API — Subscriptions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/persistent/{tenant}/{namespace}/{topic}/subscription/{subname}
+      name: persistent-tenant-namespace-topic-subscription-subname
+      description: REST surface for persistent-tenant-namespace-topic-subscription-subName.
+      operations:
+      - method: PUT
+        name: createsubscription
+        description: Create subscription
+        call: pulsar-admin-subscriptions.createsubscription
+        with:
+          tenant: rest.tenant
+          namespace: rest.namespace
+          topic: rest.topic
+          subName: rest.subName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesubscription
+        description: Delete subscription
+        call: pulsar-admin-subscriptions.deletesubscription
+        with:
+          tenant: rest.tenant
+          namespace: rest.namespace
+          topic: rest.topic
+          subName: rest.subName
+          force: rest.force
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/persistent/{tenant}/{namespace}/{topic}/subscriptions
+      name: persistent-tenant-namespace-topic-subscriptions
+      description: REST surface for persistent-tenant-namespace-topic-subscriptions.
+      operations:
+      - method: GET
+        name: listsubscriptions
+        description: List subscriptions
+        call: pulsar-admin-subscriptions.listsubscriptions
+        with:
+          tenant: rest.tenant
+          namespace: rest.namespace
+          topic: rest.topic
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pulsar-admin-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Pulsar Admin REST API — Subscriptions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: create-subscription
+      description: Create subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: pulsar-admin-subscriptions.createsubscription
+      with:
+        tenant: tools.tenant
+        namespace: tools.namespace
+        topic: tools.topic
+        subName: tools.subName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-subscription
+      description: Delete subscription
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: pulsar-admin-subscriptions.deletesubscription
+      with:
+        tenant: tools.tenant
+        namespace: tools.namespace
+        topic: tools.topic
+        subName: tools.subName
+        force: tools.force
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-subscriptions
+      description: List subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pulsar-admin-subscriptions.listsubscriptions
+      with:
+        tenant: tools.tenant
+        namespace: tools.namespace
+        topic: tools.topic
+      outputParameters:
+      - type: object
+        mapping: $.

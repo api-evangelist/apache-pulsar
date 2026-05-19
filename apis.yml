@@ -1,8 +1,8 @@
 aid: apache-pulsar
 name: Apache Pulsar
-description: >-
-  Apache Pulsar is a cloud-native, distributed messaging and streaming platform that provides server-to-server messaging with multi-tenancy, high performance, and geo-replication. It combines messaging
-  and stream processing in a single platform.
+description: Apache Pulsar is a cloud-native, distributed messaging and streaming platform that provides server-to-server
+  messaging with multi-tenancy, high performance, and geo-replication. It combines messaging and stream processing in a single
+  platform.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -16,16 +16,14 @@ tags:
 - Apache
 - Open Source
 created: '2026-03-16'
-modified: '2026-04-19'
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/apis.yml
+modified: '2026-05-19'
+url: https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
 - aid: apache-pulsar:apache-pulsar-admin-rest-api
   name: Apache Pulsar Admin REST API
-  description: >-
-    The Pulsar Admin API provides REST endpoints for managing tenants, namespaces,
-    topics, subscriptions, functions, connectors, and cluster configuration.
+  description: The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions,
+    connectors, and cluster configuration.
   humanURL: https://pulsar.apache.org/admin-rest-api/
   baseURL: http://localhost:8080/admin/v2
   tags:
@@ -37,12 +35,24 @@ apis:
     url: https://pulsar.apache.org/admin-rest-api/
   - type: OpenAPI
     url: openapi/pulsar-admin.yml
+  - type: NaftikoCapability
+    url: capabilities/pulsar-admin-brokers.yaml
+  - type: NaftikoCapability
+    url: capabilities/pulsar-admin-clusters.yaml
+  - type: NaftikoCapability
+    url: capabilities/pulsar-admin-functions.yaml
+  - type: NaftikoCapability
+    url: capabilities/pulsar-admin-namespaces.yaml
+  - type: NaftikoCapability
+    url: capabilities/pulsar-admin-subscriptions.yaml
+  - type: NaftikoCapability
+    url: capabilities/pulsar-admin-tenants.yaml
+  - type: NaftikoCapability
+    url: capabilities/pulsar-admin-topics.yaml
 - aid: apache-pulsar:apache-pulsar-messaging-api
   name: Apache Pulsar Messaging API
-  description: >-
-    Pulsar messaging protocol for producing and consuming messages on topics,
-    with support for multiple subscription types (Exclusive, Shared, Failover,
-    Key_Shared), schema enforcement, and both persistent and non-persistent topics.
+  description: Pulsar messaging protocol for producing and consuming messages on topics, with support for multiple subscription
+    types (Exclusive, Shared, Failover, Key_Shared), schema enforcement, and both persistent and non-persistent topics.
   humanURL: https://pulsar.apache.org/docs/next/client-libraries/
   tags:
   - Messaging
@@ -56,10 +66,10 @@ apis:
   - type: JSONSchema
     url: json-schema/pulsar-message.json
 integrations:
-  - name: Apache Pulsar
-  - name: Slack
-  - name: GitHub
-  - name: Pulsar
+- name: Apache Pulsar
+- name: Slack
+- name: GitHub
+- name: Pulsar
 maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com
@@ -72,8 +82,6 @@ common:
   url: rules/apache-pulsar-spectral-rules.yml
 - type: Vocabulary
   url: vocabulary/apache-pulsar-vocabulary.yaml
-- type: NaftikoCapability
-  url: capabilities/pulsar-workflow.yaml
 - type: JSONLD
   url: json-ld/apache-pulsar-context.jsonld
 - type: Features

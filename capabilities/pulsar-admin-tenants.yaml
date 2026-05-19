@@ -1,0 +1,183 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Pulsar Admin REST API — Tenants
+  description: 'Apache Pulsar Admin REST API — Tenants. 4 operations. Lead operation: List tenants. Self-contained Naftiko
+    capability covering one Apache Pulsar business surface.'
+  tags:
+  - Apache Pulsar
+  - Tenants
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_PULSAR_API_KEY: APACHE_PULSAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pulsar-admin-tenants
+    baseUri: http://localhost:8080/admin/v2
+    description: Apache Pulsar Admin REST API — Tenants business capability. Self-contained, no shared references.
+    resources:
+    - name: tenants
+      path: /tenants
+      operations:
+      - name: gettenants
+        method: GET
+        description: List tenants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tenants-tenant
+      path: /tenants/{tenant}
+      operations:
+      - name: gettenantadmin
+        method: GET
+        description: Get tenant admin configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenant
+          in: path
+          type: string
+          required: true
+      - name: createtenant
+        method: PUT
+        description: Create or update tenant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenant
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletetenant
+        method: DELETE
+        description: Delete tenant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenant
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: pulsar-admin-tenants-rest
+    port: 8080
+    description: REST adapter for Apache Pulsar Admin REST API — Tenants. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/tenants
+      name: tenants
+      description: REST surface for tenants.
+      operations:
+      - method: GET
+        name: gettenants
+        description: List tenants
+        call: pulsar-admin-tenants.gettenants
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tenants/{tenant}
+      name: tenants-tenant
+      description: REST surface for tenants-tenant.
+      operations:
+      - method: GET
+        name: gettenantadmin
+        description: Get tenant admin configuration
+        call: pulsar-admin-tenants.gettenantadmin
+        with:
+          tenant: rest.tenant
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createtenant
+        description: Create or update tenant
+        call: pulsar-admin-tenants.createtenant
+        with:
+          tenant: rest.tenant
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetenant
+        description: Delete tenant
+        call: pulsar-admin-tenants.deletetenant
+        with:
+          tenant: rest.tenant
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pulsar-admin-tenants-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Pulsar Admin REST API — Tenants. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-tenants
+      description: List tenants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pulsar-admin-tenants.gettenants
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-tenant-admin-configuration
+      description: Get tenant admin configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pulsar-admin-tenants.gettenantadmin
+      with:
+        tenant: tools.tenant
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-tenant
+      description: Create or update tenant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: pulsar-admin-tenants.createtenant
+      with:
+        tenant: tools.tenant
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-tenant
+      description: Delete tenant
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: pulsar-admin-tenants.deletetenant
+      with:
+        tenant: tools.tenant
+      outputParameters:
+      - type: object
+        mapping: $.

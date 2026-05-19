@@ -1,0 +1,99 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Pulsar Admin REST API — Brokers
+  description: 'Apache Pulsar Admin REST API — Brokers. 2 operations. Lead operation: List active brokers. Self-contained
+    Naftiko capability covering one Apache Pulsar business surface.'
+  tags:
+  - Apache Pulsar
+  - Brokers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_PULSAR_API_KEY: APACHE_PULSAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pulsar-admin-brokers
+    baseUri: http://localhost:8080/admin/v2
+    description: Apache Pulsar Admin REST API — Brokers business capability. Self-contained, no shared references.
+    resources:
+    - name: brokers
+      path: /brokers
+      operations:
+      - name: getactivebrokers
+        method: GET
+        description: List active brokers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: brokers-health
+      path: /brokers/health
+      operations:
+      - name: healthcheck
+        method: GET
+        description: Health check
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: pulsar-admin-brokers-rest
+    port: 8080
+    description: REST adapter for Apache Pulsar Admin REST API — Brokers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/brokers
+      name: brokers
+      description: REST surface for brokers.
+      operations:
+      - method: GET
+        name: getactivebrokers
+        description: List active brokers
+        call: pulsar-admin-brokers.getactivebrokers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/brokers/health
+      name: brokers-health
+      description: REST surface for brokers-health.
+      operations:
+      - method: GET
+        name: healthcheck
+        description: Health check
+        call: pulsar-admin-brokers.healthcheck
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pulsar-admin-brokers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Pulsar Admin REST API — Brokers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-active-brokers
+      description: List active brokers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pulsar-admin-brokers.getactivebrokers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: health-check
+      description: Health check
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pulsar-admin-brokers.healthcheck
+      outputParameters:
+      - type: object
+        mapping: $.
