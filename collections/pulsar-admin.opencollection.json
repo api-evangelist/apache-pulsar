@@ -1,0 +1,764 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Pulsar Admin REST API",
+    "version": "3.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/clusters"
+          },
+          "docs": "List clusters"
+        },
+        {
+          "info": {
+            "name": "Get cluster configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/clusters/:cluster",
+            "params": [
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get cluster configuration"
+        },
+        {
+          "info": {
+            "name": "Update cluster configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/admin/v2/clusters/:cluster",
+            "params": [
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update cluster configuration"
+        },
+        {
+          "info": {
+            "name": "Delete cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/admin/v2/clusters/:cluster",
+            "params": [
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete cluster"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/tenants"
+          },
+          "docs": "List tenants"
+        },
+        {
+          "info": {
+            "name": "Get tenant admin configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/tenants/:tenant",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get tenant admin configuration"
+        },
+        {
+          "info": {
+            "name": "Create or update tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/admin/v2/tenants/:tenant",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update tenant"
+        },
+        {
+          "info": {
+            "name": "Delete tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/admin/v2/tenants/:tenant",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete tenant"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Namespaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List namespaces within a tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/namespaces/:tenant",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List namespaces within a tenant"
+        },
+        {
+          "info": {
+            "name": "Get namespace policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/namespaces/:tenant/:namespace",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get namespace policies"
+        },
+        {
+          "info": {
+            "name": "Create namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/admin/v2/namespaces/:tenant/:namespace",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create namespace"
+        },
+        {
+          "info": {
+            "name": "Delete namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/admin/v2/namespaces/:tenant/:namespace",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete namespace"
+        },
+        {
+          "info": {
+            "name": "Get retention configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/namespaces/:tenant/:namespace/retention",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get retention configuration"
+        },
+        {
+          "info": {
+            "name": "Set retention configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/admin/v2/namespaces/:tenant/:namespace/retention",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set retention configuration"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Topics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List persistent topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/persistent/:tenant/:namespace",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List persistent topics"
+        },
+        {
+          "info": {
+            "name": "Create non-partitioned topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/admin/v2/persistent/:tenant/:namespace/:topic",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create non-partitioned topic"
+        },
+        {
+          "info": {
+            "name": "Delete topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/admin/v2/persistent/:tenant/:namespace/:topic",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete topic"
+        },
+        {
+          "info": {
+            "name": "Get topic stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/persistent/:tenant/:namespace/:topic/stats",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "getPreciseBacklog",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "subscriptionBacklogSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get topic stats"
+        },
+        {
+          "info": {
+            "name": "Get partitioned topic metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/persistent/:tenant/:namespace/:topic/partitions",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get partitioned topic metadata"
+        },
+        {
+          "info": {
+            "name": "Create partitioned topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/admin/v2/persistent/:tenant/:namespace/:topic/partitions",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create partitioned topic"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/persistent/:tenant/:namespace/:topic/subscriptions",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List subscriptions"
+        },
+        {
+          "info": {
+            "name": "Create subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/admin/v2/persistent/:tenant/:namespace/:topic/subscription/:subName",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "subName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create subscription"
+        },
+        {
+          "info": {
+            "name": "Delete subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/admin/v2/persistent/:tenant/:namespace/:topic/subscription/:subName",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "subName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete subscription"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Functions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/functions/:tenant/:namespace",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List functions"
+        },
+        {
+          "info": {
+            "name": "Get function info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/functions/:tenant/:namespace/:functionName",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "functionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get function info"
+        },
+        {
+          "info": {
+            "name": "Delete function",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/admin/v2/functions/:tenant/:namespace/:functionName",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "functionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete function"
+        },
+        {
+          "info": {
+            "name": "Get function status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/functions/:tenant/:namespace/:functionName/status",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "functionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get function status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Brokers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List active brokers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/brokers"
+          },
+          "docs": "List active brokers"
+        },
+        {
+          "info": {
+            "name": "Health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/brokers/health"
+          },
+          "docs": "Health check"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
