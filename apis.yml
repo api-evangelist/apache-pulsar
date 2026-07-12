@@ -64,6 +64,10 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 common:
+  - type: VulnerabilityDisclosure
+    url: security/apache-pulsar-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/apache-pulsar-domain-security.yml
   - type: GitHubOrganization
     url: https://github.com/apache/pulsar
   - type: Documentation
@@ -74,6 +78,8 @@ common:
     url: vocabulary/apache-pulsar-vocabulary.yaml
   - type: JSONLD
     url: json-ld/apache-pulsar-context.jsonld
+  - type: Blog
+    url: https://pulsar.apache.org/blog/rss.xml
   - type: Features
     data:
       - name: Multi-Tenancy
