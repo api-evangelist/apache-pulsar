@@ -1,0 +1,13 @@
+{
+  "repo": "apache-pulsar",
+  "feeds": [
+    {
+      "source": "https://pulsar.apache.org/blog/rss.xml",
+      "feed_url": "https://pulsar.apache.org/blog/rss.xml",
+      "title": "Apache Pulsar Blog",
+      "saved": 7
+    }
+  ],
+  "fetched": "2026-07-11T11:43:46Z",
+  "post_count": 27
+}
