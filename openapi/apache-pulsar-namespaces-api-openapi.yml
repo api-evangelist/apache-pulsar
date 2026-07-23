@@ -1,0 +1,191 @@
+openapi: 3.1.0
+info:
+  title: Apache Pulsar Admin REST Brokers Namespaces API
+  description: The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, packages, and cluster configuration in an Apache Pulsar deployment.
+  version: 3.3.0
+  contact:
+    name: Apache Pulsar
+    url: https://pulsar.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/admin/v2
+  description: Default Pulsar Admin API
+tags:
+- name: Namespaces
+paths:
+  /namespaces/{tenant}:
+    get:
+      summary: List namespaces within a tenant
+      operationId: getTenantNamespaces
+      tags:
+      - Namespaces
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of namespaces
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /namespaces/{tenant}/{namespace}:
+    get:
+      summary: Get namespace policies
+      operationId: getNamespacePolicies
+      tags:
+      - Namespaces
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Namespace policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policies'
+    put:
+      summary: Create namespace
+      operationId: createNamespace
+      tags:
+      - Namespaces
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policies'
+      responses:
+        '204':
+          description: Namespace created
+    delete:
+      summary: Delete namespace
+      operationId: deleteNamespace
+      tags:
+      - Namespaces
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: force
+        in: query
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '204':
+          description: Namespace deleted
+  /namespaces/{tenant}/{namespace}/retention:
+    get:
+      summary: Get retention configuration
+      operationId: getRetention
+      tags:
+      - Namespaces
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Retention policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetentionPolicies'
+    post:
+      summary: Set retention configuration
+      operationId: setRetention
+      tags:
+      - Namespaces
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetentionPolicies'
+      responses:
+        '204':
+          description: Retention set
+components:
+  schemas:
+    RetentionPolicies:
+      type: object
+      properties:
+        retentionTimeInMinutes:
+          type: integer
+        retentionSizeInMB:
+          type: integer
+    Policies:
+      type: object
+      properties:
+        replication_clusters:
+          type: array
+          items:
+            type: string
+        bundles:
+          type: object
+        retention_policies:
+          $ref: '#/components/schemas/RetentionPolicies'
+        schema_auto_update_compatibility_strategy:
+          type: string
+        message_ttl_in_seconds:
+          type: integer
+        max_producers_per_topic:
+          type: integer
+        max_consumers_per_topic:
+          type: integer
+        max_consumers_per_subscription:
+          type: integer
+        backlog_quota_map:
+          type: object

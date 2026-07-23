@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: Apache Pulsar Admin REST Brokers API
+  description: The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, packages, and cluster configuration in an Apache Pulsar deployment.
+  version: 3.3.0
+  contact:
+    name: Apache Pulsar
+    url: https://pulsar.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/admin/v2
+  description: Default Pulsar Admin API
+tags:
+- name: Brokers
+paths:
+  /brokers:
+    get:
+      summary: List active brokers
+      operationId: getActiveBrokers
+      tags:
+      - Brokers
+      responses:
+        '200':
+          description: List of active broker addresses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /brokers/health:
+    get:
+      summary: Health check
+      operationId: healthCheck
+      tags:
+      - Brokers
+      responses:
+        '200':
+          description: Broker is healthy
+        '503':
+          description: Broker is not healthy

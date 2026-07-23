@@ -1,0 +1,165 @@
+openapi: 3.1.0
+info:
+  title: Apache Pulsar Admin REST Brokers Functions API
+  description: The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, packages, and cluster configuration in an Apache Pulsar deployment.
+  version: 3.3.0
+  contact:
+    name: Apache Pulsar
+    url: https://pulsar.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/admin/v2
+  description: Default Pulsar Admin API
+tags:
+- name: Functions
+paths:
+  /functions/{tenant}/{namespace}:
+    get:
+      summary: List functions
+      operationId: listFunctions
+      tags:
+      - Functions
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of functions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /functions/{tenant}/{namespace}/{functionName}:
+    get:
+      summary: Get function info
+      operationId: getFunctionInfo
+      tags:
+      - Functions
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: functionName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Function configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FunctionConfig'
+    delete:
+      summary: Delete function
+      operationId: deleteFunction
+      tags:
+      - Functions
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: functionName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Function deleted
+  /functions/{tenant}/{namespace}/{functionName}/status:
+    get:
+      summary: Get function status
+      operationId: getFunctionStatus
+      tags:
+      - Functions
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: functionName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Function instance status
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    FunctionConfig:
+      type: object
+      properties:
+        tenant:
+          type: string
+        namespace:
+          type: string
+        name:
+          type: string
+        className:
+          type: string
+        inputs:
+          type: array
+          items:
+            type: string
+        output:
+          type: string
+        logTopic:
+          type: string
+        processingGuarantees:
+          type: string
+          enum:
+          - ATLEAST_ONCE
+          - ATMOST_ONCE
+          - EFFECTIVELY_ONCE
+        parallelism:
+          type: integer
+        runtime:
+          type: string
+          enum:
+          - JAVA
+          - PYTHON
+          - GO
+        autoAck:
+          type: boolean
+        userConfig:
+          type: object
+          additionalProperties: true

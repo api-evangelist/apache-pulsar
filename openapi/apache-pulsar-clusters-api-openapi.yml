@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: Apache Pulsar Admin REST Brokers Clusters API
+  description: The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, packages, and cluster configuration in an Apache Pulsar deployment.
+  version: 3.3.0
+  contact:
+    name: Apache Pulsar
+    url: https://pulsar.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/admin/v2
+  description: Default Pulsar Admin API
+tags:
+- name: Clusters
+paths:
+  /clusters:
+    get:
+      summary: List clusters
+      operationId: getClusters
+      tags:
+      - Clusters
+      responses:
+        '200':
+          description: List of cluster names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /clusters/{cluster}:
+    get:
+      summary: Get cluster configuration
+      operationId: getCluster
+      tags:
+      - Clusters
+      parameters:
+      - name: cluster
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Cluster data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterData'
+    put:
+      summary: Update cluster configuration
+      operationId: updateCluster
+      tags:
+      - Clusters
+      parameters:
+      - name: cluster
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterData'
+      responses:
+        '204':
+          description: Cluster updated
+    delete:
+      summary: Delete cluster
+      operationId: deleteCluster
+      tags:
+      - Clusters
+      parameters:
+      - name: cluster
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Cluster deleted
+components:
+  schemas:
+    ClusterData:
+      type: object
+      properties:
+        serviceUrl:
+          type: string
+        serviceUrlTls:
+          type: string
+        brokerServiceUrl:
+          type: string
+        brokerServiceUrlTls:
+          type: string
+        peerClusterNames:
+          type: array
+          items:
+            type: string

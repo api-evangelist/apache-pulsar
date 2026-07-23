@@ -1,0 +1,117 @@
+openapi: 3.1.0
+info:
+  title: Apache Pulsar Admin REST Brokers Subscriptions API
+  description: The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, packages, and cluster configuration in an Apache Pulsar deployment.
+  version: 3.3.0
+  contact:
+    name: Apache Pulsar
+    url: https://pulsar.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/admin/v2
+  description: Default Pulsar Admin API
+tags:
+- name: Subscriptions
+paths:
+  /persistent/{tenant}/{namespace}/{topic}/subscriptions:
+    get:
+      summary: List subscriptions
+      operationId: listSubscriptions
+      tags:
+      - Subscriptions
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of subscription names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /persistent/{tenant}/{namespace}/{topic}/subscription/{subName}:
+    put:
+      summary: Create subscription
+      operationId: createSubscription
+      tags:
+      - Subscriptions
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: subName
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              description: MessageId to reset to (earliest or latest)
+      responses:
+        '204':
+          description: Subscription created
+    delete:
+      summary: Delete subscription
+      operationId: deleteSubscription
+      tags:
+      - Subscriptions
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: subName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: force
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: Subscription deleted

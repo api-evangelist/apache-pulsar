@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: Apache Pulsar Admin REST Brokers Tenants API
+  description: The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, packages, and cluster configuration in an Apache Pulsar deployment.
+  version: 3.3.0
+  contact:
+    name: Apache Pulsar
+    url: https://pulsar.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/admin/v2
+  description: Default Pulsar Admin API
+tags:
+- name: Tenants
+paths:
+  /tenants:
+    get:
+      summary: List tenants
+      operationId: getTenants
+      tags:
+      - Tenants
+      responses:
+        '200':
+          description: List of tenants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /tenants/{tenant}:
+    get:
+      summary: Get tenant admin configuration
+      operationId: getTenantAdmin
+      tags:
+      - Tenants
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tenant info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantInfo'
+    put:
+      summary: Create or update tenant
+      operationId: createTenant
+      tags:
+      - Tenants
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantInfo'
+      responses:
+        '204':
+          description: Tenant created/updated
+    delete:
+      summary: Delete tenant
+      operationId: deleteTenant
+      tags:
+      - Tenants
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Tenant deleted
+components:
+  schemas:
+    TenantInfo:
+      type: object
+      properties:
+        adminRoles:
+          type: array
+          items:
+            type: string
+        allowedClusters:
+          type: array
+          items:
+            type: string

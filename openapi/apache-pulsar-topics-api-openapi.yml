@@ -1,0 +1,243 @@
+openapi: 3.1.0
+info:
+  title: Apache Pulsar Admin REST Brokers Topics API
+  description: The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, packages, and cluster configuration in an Apache Pulsar deployment.
+  version: 3.3.0
+  contact:
+    name: Apache Pulsar
+    url: https://pulsar.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/admin/v2
+  description: Default Pulsar Admin API
+tags:
+- name: Topics
+paths:
+  /persistent/{tenant}/{namespace}:
+    get:
+      summary: List persistent topics
+      operationId: listPersistentTopics
+      tags:
+      - Topics
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of topics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /persistent/{tenant}/{namespace}/{topic}:
+    put:
+      summary: Create non-partitioned topic
+      operationId: createNonPartitionedTopic
+      tags:
+      - Topics
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Topic created
+    delete:
+      summary: Delete topic
+      operationId: deleteTopic
+      tags:
+      - Topics
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: force
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: Topic deleted
+  /persistent/{tenant}/{namespace}/{topic}/stats:
+    get:
+      summary: Get topic stats
+      operationId: getTopicStats
+      tags:
+      - Topics
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: getPreciseBacklog
+        in: query
+        schema:
+          type: boolean
+      - name: subscriptionBacklogSize
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Topic statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicStats'
+  /persistent/{tenant}/{namespace}/{topic}/partitions:
+    get:
+      summary: Get partitioned topic metadata
+      operationId: getPartitionedTopicMetadata
+      tags:
+      - Topics
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Partitioned topic metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  partitions:
+                    type: integer
+    put:
+      summary: Create partitioned topic
+      operationId: createPartitionedTopic
+      tags:
+      - Topics
+      parameters:
+      - name: tenant
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: integer
+              description: Number of partitions
+      responses:
+        '204':
+          description: Partitioned topic created
+components:
+  schemas:
+    TopicStats:
+      type: object
+      properties:
+        msgRateIn:
+          type: number
+        msgRateOut:
+          type: number
+        msgThroughputIn:
+          type: number
+        msgThroughputOut:
+          type: number
+        averageMsgSize:
+          type: number
+        storageSize:
+          type: integer
+        backlogSize:
+          type: integer
+        publishers:
+          type: array
+          items:
+            type: object
+            properties:
+              msgRateIn:
+                type: number
+              msgThroughputIn:
+                type: number
+              producerName:
+                type: string
+              producerId:
+                type: integer
+        subscriptions:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              msgRateOut:
+                type: number
+              msgThroughputOut:
+                type: number
+              msgBacklog:
+                type: integer
+              consumers:
+                type: array
+                items:
+                  type: object
