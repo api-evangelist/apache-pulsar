@@ -5,9 +5,21 @@ description: >-
   with multi-tenancy, high performance, and geo-replication. It combines messaging and stream processing in a single
   platform.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apache-pulsar.png
 tags:
   - Cloud Native
   - Messaging
@@ -21,40 +33,108 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: apache-pulsar:apache-pulsar-admin-rest-api
-    name: Apache Pulsar Admin REST API
-    description: >-
-      The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions,
-      connectors, and cluster configuration.
-    humanURL: https://pulsar.apache.org/admin-rest-api/
-    baseURL: http://localhost:8080/admin/v2
-    tags:
-      - Administration
-      - Multi-Tenant
-      - REST
-    properties:
-      - type: Documentation
-        url: https://pulsar.apache.org/admin-rest-api/
-      - type: OpenAPI
-        url: openapi/pulsar-admin.yml
-  - aid: apache-pulsar:apache-pulsar-messaging-api
-    name: Apache Pulsar Messaging API
-    description: >-
-      Pulsar messaging protocol for producing and consuming messages on topics, with support for multiple subscription
-      types (Exclusive, Shared, Failover, Key_Shared), schema enforcement, and both persistent and non-persistent
-      topics.
-    humanURL: https://pulsar.apache.org/docs/next/client-libraries/
-    tags:
-      - Messaging
-      - Pub-Sub
-      - Streaming
-    properties:
-      - type: Documentation
-        url: https://pulsar.apache.org/docs/next/client-libraries/
-      - type: AsyncAPI
-        url: asyncapi/pulsar-messaging.yml
-      - type: JSONSchema
-        url: json-schema/pulsar-message.json
+- aid: apache-pulsar:apache-pulsar-messaging-api
+  name: Apache Pulsar Messaging API
+  description: >-
+    Pulsar messaging protocol for producing and consuming messages on topics, with support for multiple
+    subscription types (Exclusive, Shared, Failover, Key_Shared), schema enforcement, and both persistent
+    and non-persistent topics.
+  humanURL: https://pulsar.apache.org/docs/next/client-libraries/
+  tags:
+  - Messaging
+  - Pub-Sub
+  - Streaming
+  properties:
+  - type: Documentation
+    url: https://pulsar.apache.org/docs/next/client-libraries/
+  - type: AsyncAPI
+    url: asyncapi/pulsar-messaging.yml
+  - type: JSONSchema
+    url: json-schema/pulsar-message.json
+- aid: apache-pulsar:apache-pulsar-brokers-api
+  name: Apache Pulsar Brokers API
+  description: The Brokers API from Apache Pulsar — 2 operation(s) for brokers.
+  humanURL: https://pulsar.apache.org/admin-rest-api/
+  baseURL: http://localhost:8080/admin/v2
+  tags:
+  - Brokers
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-pulsar-brokers-api-openapi.yml
+  - type: Documentation
+    url: https://pulsar.apache.org/admin-rest-api/
+- aid: apache-pulsar:apache-pulsar-clusters-api
+  name: Apache Pulsar Clusters API
+  description: The Clusters API from Apache Pulsar — 2 operation(s) for clusters.
+  humanURL: https://pulsar.apache.org/admin-rest-api/
+  baseURL: http://localhost:8080/admin/v2
+  tags:
+  - Clusters
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-pulsar-clusters-api-openapi.yml
+  - type: Documentation
+    url: https://pulsar.apache.org/admin-rest-api/
+- aid: apache-pulsar:apache-pulsar-functions-api
+  name: Apache Pulsar Functions API
+  description: The Functions API from Apache Pulsar — 3 operation(s) for functions.
+  humanURL: https://pulsar.apache.org/admin-rest-api/
+  baseURL: http://localhost:8080/admin/v2
+  tags:
+  - Functions
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-pulsar-functions-api-openapi.yml
+  - type: Documentation
+    url: https://pulsar.apache.org/admin-rest-api/
+- aid: apache-pulsar:apache-pulsar-namespaces-api
+  name: Apache Pulsar Namespaces API
+  description: The Namespaces API from Apache Pulsar — 3 operation(s) for namespaces.
+  humanURL: https://pulsar.apache.org/admin-rest-api/
+  baseURL: http://localhost:8080/admin/v2
+  tags:
+  - Namespaces
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-pulsar-namespaces-api-openapi.yml
+  - type: Documentation
+    url: https://pulsar.apache.org/admin-rest-api/
+- aid: apache-pulsar:apache-pulsar-subscriptions-api
+  name: Apache Pulsar Subscriptions API
+  description: The Subscriptions API from Apache Pulsar — 2 operation(s) for subscriptions.
+  humanURL: https://pulsar.apache.org/admin-rest-api/
+  baseURL: http://localhost:8080/admin/v2
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-pulsar-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://pulsar.apache.org/admin-rest-api/
+- aid: apache-pulsar:apache-pulsar-tenants-api
+  name: Apache Pulsar Tenants API
+  description: The Tenants API from Apache Pulsar — 2 operation(s) for tenants.
+  humanURL: https://pulsar.apache.org/admin-rest-api/
+  baseURL: http://localhost:8080/admin/v2
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-pulsar-tenants-api-openapi.yml
+  - type: Documentation
+    url: https://pulsar.apache.org/admin-rest-api/
+- aid: apache-pulsar:apache-pulsar-topics-api
+  name: Apache Pulsar Topics API
+  description: The Topics API from Apache Pulsar — 4 operation(s) for topics.
+  humanURL: https://pulsar.apache.org/admin-rest-api/
+  baseURL: http://localhost:8080/admin/v2
+  tags:
+  - Topics
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-pulsar-topics-api-openapi.yml
+  - type: Documentation
+    url: https://pulsar.apache.org/admin-rest-api/
 integrations:
   - name: Apache Pulsar
   - name: Slack
