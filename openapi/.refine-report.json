@@ -1,0 +1,26 @@
+{
+  "provider": "apache-pulsar",
+  "sources": [
+    "apache-pulsar-brokers-api-openapi.yml",
+    "apache-pulsar-clusters-api-openapi.yml",
+    "apache-pulsar-functions-api-openapi.yml",
+    "apache-pulsar-namespaces-api-openapi.yml",
+    "apache-pulsar-subscriptions-api-openapi.yml",
+    "apache-pulsar-tenants-api-openapi.yml",
+    "apache-pulsar-topics-api-openapi.yml"
+  ],
+  "outputs": [
+    "apache-pulsar-brokers-api-openapi.yml",
+    "apache-pulsar-clusters-api-openapi.yml",
+    "apache-pulsar-functions-api-openapi.yml",
+    "apache-pulsar-namespaces-api-openapi.yml",
+    "apache-pulsar-subscriptions-api-openapi.yml",
+    "apache-pulsar-tenants-api-openapi.yml",
+    "apache-pulsar-topics-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

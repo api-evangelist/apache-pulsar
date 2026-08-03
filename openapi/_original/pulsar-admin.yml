@@ -1,0 +1,844 @@
+openapi: 3.1.0
+info:
+  title: Apache Pulsar Admin REST API
+  description: >-
+    The Pulsar Admin API provides REST endpoints for managing tenants, namespaces,
+    topics, subscriptions, functions, connectors, packages, and cluster
+    configuration in an Apache Pulsar deployment.
+  version: 3.3.0
+  contact:
+    name: Apache Pulsar
+    url: https://pulsar.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: http://localhost:8080/admin/v2
+    description: Default Pulsar Admin API
+paths:
+  /clusters:
+    get:
+      summary: List clusters
+      operationId: getClusters
+      tags:
+        - Clusters
+      responses:
+        '200':
+          description: List of cluster names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /clusters/{cluster}:
+    get:
+      summary: Get cluster configuration
+      operationId: getCluster
+      tags:
+        - Clusters
+      parameters:
+        - name: cluster
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cluster data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterData'
+    put:
+      summary: Update cluster configuration
+      operationId: updateCluster
+      tags:
+        - Clusters
+      parameters:
+        - name: cluster
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterData'
+      responses:
+        '204':
+          description: Cluster updated
+    delete:
+      summary: Delete cluster
+      operationId: deleteCluster
+      tags:
+        - Clusters
+      parameters:
+        - name: cluster
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cluster deleted
+  /tenants:
+    get:
+      summary: List tenants
+      operationId: getTenants
+      tags:
+        - Tenants
+      responses:
+        '200':
+          description: List of tenants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /tenants/{tenant}:
+    get:
+      summary: Get tenant admin configuration
+      operationId: getTenantAdmin
+      tags:
+        - Tenants
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tenant info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantInfo'
+    put:
+      summary: Create or update tenant
+      operationId: createTenant
+      tags:
+        - Tenants
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantInfo'
+      responses:
+        '204':
+          description: Tenant created/updated
+    delete:
+      summary: Delete tenant
+      operationId: deleteTenant
+      tags:
+        - Tenants
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Tenant deleted
+  /namespaces/{tenant}:
+    get:
+      summary: List namespaces within a tenant
+      operationId: getTenantNamespaces
+      tags:
+        - Namespaces
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of namespaces
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /namespaces/{tenant}/{namespace}:
+    get:
+      summary: Get namespace policies
+      operationId: getNamespacePolicies
+      tags:
+        - Namespaces
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Namespace policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policies'
+    put:
+      summary: Create namespace
+      operationId: createNamespace
+      tags:
+        - Namespaces
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policies'
+      responses:
+        '204':
+          description: Namespace created
+    delete:
+      summary: Delete namespace
+      operationId: deleteNamespace
+      tags:
+        - Namespaces
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: force
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '204':
+          description: Namespace deleted
+  /namespaces/{tenant}/{namespace}/retention:
+    get:
+      summary: Get retention configuration
+      operationId: getRetention
+      tags:
+        - Namespaces
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Retention policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetentionPolicies'
+    post:
+      summary: Set retention configuration
+      operationId: setRetention
+      tags:
+        - Namespaces
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetentionPolicies'
+      responses:
+        '204':
+          description: Retention set
+  /persistent/{tenant}/{namespace}:
+    get:
+      summary: List persistent topics
+      operationId: listPersistentTopics
+      tags:
+        - Topics
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of topics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /persistent/{tenant}/{namespace}/{topic}:
+    put:
+      summary: Create non-partitioned topic
+      operationId: createNonPartitionedTopic
+      tags:
+        - Topics
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: topic
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Topic created
+    delete:
+      summary: Delete topic
+      operationId: deleteTopic
+      tags:
+        - Topics
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: topic
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: force
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '204':
+          description: Topic deleted
+  /persistent/{tenant}/{namespace}/{topic}/stats:
+    get:
+      summary: Get topic stats
+      operationId: getTopicStats
+      tags:
+        - Topics
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: topic
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: getPreciseBacklog
+          in: query
+          schema:
+            type: boolean
+        - name: subscriptionBacklogSize
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Topic statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicStats'
+  /persistent/{tenant}/{namespace}/{topic}/subscriptions:
+    get:
+      summary: List subscriptions
+      operationId: listSubscriptions
+      tags:
+        - Subscriptions
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: topic
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of subscription names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /persistent/{tenant}/{namespace}/{topic}/subscription/{subName}:
+    put:
+      summary: Create subscription
+      operationId: createSubscription
+      tags:
+        - Subscriptions
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: topic
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: subName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              description: MessageId to reset to (earliest or latest)
+      responses:
+        '204':
+          description: Subscription created
+    delete:
+      summary: Delete subscription
+      operationId: deleteSubscription
+      tags:
+        - Subscriptions
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: topic
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: subName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: force
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '204':
+          description: Subscription deleted
+  /persistent/{tenant}/{namespace}/{topic}/partitions:
+    get:
+      summary: Get partitioned topic metadata
+      operationId: getPartitionedTopicMetadata
+      tags:
+        - Topics
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: topic
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Partitioned topic metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  partitions:
+                    type: integer
+    put:
+      summary: Create partitioned topic
+      operationId: createPartitionedTopic
+      tags:
+        - Topics
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: topic
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: integer
+              description: Number of partitions
+      responses:
+        '204':
+          description: Partitioned topic created
+  /functions/{tenant}/{namespace}:
+    get:
+      summary: List functions
+      operationId: listFunctions
+      tags:
+        - Functions
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of functions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /functions/{tenant}/{namespace}/{functionName}:
+    get:
+      summary: Get function info
+      operationId: getFunctionInfo
+      tags:
+        - Functions
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: functionName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Function configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FunctionConfig'
+    delete:
+      summary: Delete function
+      operationId: deleteFunction
+      tags:
+        - Functions
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: functionName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Function deleted
+  /functions/{tenant}/{namespace}/{functionName}/status:
+    get:
+      summary: Get function status
+      operationId: getFunctionStatus
+      tags:
+        - Functions
+      parameters:
+        - name: tenant
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: functionName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Function instance status
+          content:
+            application/json:
+              schema:
+                type: object
+  /brokers:
+    get:
+      summary: List active brokers
+      operationId: getActiveBrokers
+      tags:
+        - Brokers
+      responses:
+        '200':
+          description: List of active broker addresses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /brokers/health:
+    get:
+      summary: Health check
+      operationId: healthCheck
+      tags:
+        - Brokers
+      responses:
+        '200':
+          description: Broker is healthy
+        '503':
+          description: Broker is not healthy
+components:
+  schemas:
+    ClusterData:
+      type: object
+      properties:
+        serviceUrl:
+          type: string
+        serviceUrlTls:
+          type: string
+        brokerServiceUrl:
+          type: string
+        brokerServiceUrlTls:
+          type: string
+        peerClusterNames:
+          type: array
+          items:
+            type: string
+    TenantInfo:
+      type: object
+      properties:
+        adminRoles:
+          type: array
+          items:
+            type: string
+        allowedClusters:
+          type: array
+          items:
+            type: string
+    Policies:
+      type: object
+      properties:
+        replication_clusters:
+          type: array
+          items:
+            type: string
+        bundles:
+          type: object
+        retention_policies:
+          $ref: '#/components/schemas/RetentionPolicies'
+        schema_auto_update_compatibility_strategy:
+          type: string
+        message_ttl_in_seconds:
+          type: integer
+        max_producers_per_topic:
+          type: integer
+        max_consumers_per_topic:
+          type: integer
+        max_consumers_per_subscription:
+          type: integer
+        backlog_quota_map:
+          type: object
+    RetentionPolicies:
+      type: object
+      properties:
+        retentionTimeInMinutes:
+          type: integer
+        retentionSizeInMB:
+          type: integer
+    TopicStats:
+      type: object
+      properties:
+        msgRateIn:
+          type: number
+        msgRateOut:
+          type: number
+        msgThroughputIn:
+          type: number
+        msgThroughputOut:
+          type: number
+        averageMsgSize:
+          type: number
+        storageSize:
+          type: integer
+        backlogSize:
+          type: integer
+        publishers:
+          type: array
+          items:
+            type: object
+            properties:
+              msgRateIn:
+                type: number
+              msgThroughputIn:
+                type: number
+              producerName:
+                type: string
+              producerId:
+                type: integer
+        subscriptions:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              msgRateOut:
+                type: number
+              msgThroughputOut:
+                type: number
+              msgBacklog:
+                type: integer
+              consumers:
+                type: array
+                items:
+                  type: object
+    FunctionConfig:
+      type: object
+      properties:
+        tenant:
+          type: string
+        namespace:
+          type: string
+        name:
+          type: string
+        className:
+          type: string
+        inputs:
+          type: array
+          items:
+            type: string
+        output:
+          type: string
+        logTopic:
+          type: string
+        processingGuarantees:
+          type: string
+          enum: [ATLEAST_ONCE, ATMOST_ONCE, EFFECTIVELY_ONCE]
+        parallelism:
+          type: integer
+        runtime:
+          type: string
+          enum: [JAVA, PYTHON, GO]
+        autoAck:
+          type: boolean
+        userConfig:
+          type: object
+          additionalProperties: true
