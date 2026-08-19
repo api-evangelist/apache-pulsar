@@ -31,7 +31,7 @@ tags:
 created: '2026-03-16'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: apache-pulsar:apache-pulsar-messaging-api
   name: Apache Pulsar Messaging API
