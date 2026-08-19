@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Pulsar Admin REST Brokers Clusters API",
+    "version": "3.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/clusters"
+          },
+          "docs": "List clusters"
+        },
+        {
+          "info": {
+            "name": "Get cluster configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/clusters/:cluster",
+            "params": [
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get cluster configuration"
+        },
+        {
+          "info": {
+            "name": "Update cluster configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/admin/v2/clusters/:cluster",
+            "params": [
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update cluster configuration"
+        },
+        {
+          "info": {
+            "name": "Delete cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/admin/v2/clusters/:cluster",
+            "params": [
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete cluster"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

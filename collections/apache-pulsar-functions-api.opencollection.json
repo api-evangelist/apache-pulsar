@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Pulsar Admin REST Brokers Functions API",
+    "version": "3.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Functions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/functions/:tenant/:namespace",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List functions"
+        },
+        {
+          "info": {
+            "name": "Get function info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/functions/:tenant/:namespace/:functionName",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "functionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get function info"
+        },
+        {
+          "info": {
+            "name": "Delete function",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/admin/v2/functions/:tenant/:namespace/:functionName",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "functionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete function"
+        },
+        {
+          "info": {
+            "name": "Get function status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/admin/v2/functions/:tenant/:namespace/:functionName/status",
+            "params": [
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "functionName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get function status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
