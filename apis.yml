@@ -21,6 +21,14 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apache-pulsar.png
 tags:
+  - Cloud-Native
+  - Messaging
+  - Multi-Tenant
+  - Pub-Sub
+  - Streaming
+  - Apache
+  - Open-Source
+tags_raw:
   - Cloud Native
   - Messaging
   - Multi-Tenant
@@ -69,6 +77,8 @@ apis:
   humanURL: https://pulsar.apache.org/admin-rest-api/
   baseURL: http://localhost:8080/admin/v2
   tags:
+  - Cluster
+  tags_raw:
   - Clusters
   properties:
   - type: OpenAPI
@@ -105,6 +115,8 @@ apis:
   humanURL: https://pulsar.apache.org/admin-rest-api/
   baseURL: http://localhost:8080/admin/v2
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
