@@ -152,6 +152,8 @@ apis:
   humanURL: https://pulsar.apache.org/admin-rest-api/
   baseURL: http://localhost:8080/admin/v2
   tags:
+  - Topic
+  tags_raw:
   - Topics
   properties:
   - type: OpenAPI
