@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Apache Pulsar Admin REST Brokers Namespaces API
+  title: Apache Pulsar Admin REST Namespaces API
   description: The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, packages, and cluster configuration in an Apache Pulsar deployment.
   version: 3.3.0
   contact:
@@ -159,13 +159,6 @@ paths:
           description: Retention set
 components:
   schemas:
-    RetentionPolicies:
-      type: object
-      properties:
-        retentionTimeInMinutes:
-          type: integer
-        retentionSizeInMB:
-          type: integer
     Policies:
       type: object
       properties:
@@ -189,3 +182,10 @@ components:
           type: integer
         backlog_quota_map:
           type: object
+    RetentionPolicies:
+      type: object
+      properties:
+        retentionTimeInMinutes:
+          type: integer
+        retentionSizeInMB:
+          type: integer
