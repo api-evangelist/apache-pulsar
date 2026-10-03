@@ -159,6 +159,13 @@ paths:
           description: Retention set
 components:
   schemas:
+    RetentionPolicies:
+      type: object
+      properties:
+        retentionTimeInMinutes:
+          type: integer
+        retentionSizeInMB:
+          type: integer
     Policies:
       type: object
       properties:
@@ -182,10 +189,3 @@ components:
           type: integer
         backlog_quota_map:
           type: object
-    RetentionPolicies:
-      type: object
-      properties:
-        retentionTimeInMinutes:
-          type: integer
-        retentionSizeInMB:
-          type: integer
