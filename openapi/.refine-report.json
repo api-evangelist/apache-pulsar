@@ -1,39 +1,19 @@
 {
   "provider": "apache-pulsar",
   "sources": [
-    "_original/pulsar-admin.yml"
+    "_original/apache-pulsar-openapi.json"
   ],
   "outputs": [
-    "apache-pulsar-brokers-api-openapi.yml",
-    "apache-pulsar-clusters-api-openapi.yml",
-    "apache-pulsar-functions-api-openapi.yml",
-    "apache-pulsar-namespaces-api-openapi.yml",
-    "apache-pulsar-subscriptions-api-openapi.yml",
-    "apache-pulsar-tenants-api-openapi.yml",
-    "apache-pulsar-topics-api-openapi.yml"
+    "apache-pulsar-queues-api-openapi.yml",
+    "apache-pulsar-status-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "pulsar-admin.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "pulsar-admin.yml: declared missing tag: Brokers",
-    "pulsar-admin.yml: declared missing tag: Clusters",
-    "pulsar-admin.yml: declared missing tag: Functions",
-    "pulsar-admin.yml: declared missing tag: Namespaces",
-    "pulsar-admin.yml: declared missing tag: Subscriptions",
-    "pulsar-admin.yml: declared missing tag: Tenants",
-    "pulsar-admin.yml: declared missing tag: Topics",
-    "apis.yml register: already-registered"
+    "apache-pulsar-openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "apis.yml register: written (+2 apis, 3 total)"
   ],
-  "skipped": [
-    "apache-pulsar-brokers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apache-pulsar-clusters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apache-pulsar-functions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apache-pulsar-namespaces-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apache-pulsar-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apache-pulsar-tenants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "apache-pulsar-topics-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }
