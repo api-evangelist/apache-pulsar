@@ -1,4 +1,4 @@
-# Apache Pulsar (apache-pulsar)
+# Apache Pulsar
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,84 +66,199 @@
 
 Apache Pulsar is a cloud-native, distributed messaging and streaming platform that provides server-to-server messaging with multi-tenancy, high performance, and geo-replication. It combines messaging and stream processing in a single platform.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/apache-pulsar/refs/heads/main/apis.yml)
+**Areas:** Cloud-Native · Messaging · Multi-Tenant · Pub/Sub · Streaming · Apache · Open Source · Real-Time
 
-## Scope
+## Apache Pulsar on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Apache Pulsar is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apache-pulsar/](https://apis.io/providers/apache-pulsar/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- Cloud Native
-- Messaging
-- Multi-Tenant
-- Pub-Sub
-- Streaming
-- Apache
-- Open Source
+- [Apache Pulsar Messaging API](https://apis.io/apis/apache-pulsar/apache-pulsar-messaging-api/) — Pulsar messaging protocol for producing and consuming messages on topics, with support for multiple subscription types (Exclusive, Shared, Failover,…
+- [Apache Pulsar Brokers API](https://apis.io/apis/apache-pulsar/apache-pulsar-brokers-api/) — The Brokers API from Apache Pulsar — 2 operation(s) for brokers.
+- [Apache Pulsar Clusters API](https://apis.io/apis/apache-pulsar/apache-pulsar-clusters-api/) — The Clusters API from Apache Pulsar — 2 operation(s) for clusters.
+- [Apache Pulsar Functions API](https://apis.io/apis/apache-pulsar/apache-pulsar-functions-api/) — The Functions API from Apache Pulsar — 3 operation(s) for functions.
+- [Apache Pulsar Namespaces API](https://apis.io/apis/apache-pulsar/apache-pulsar-namespaces-api/) — The Namespaces API from Apache Pulsar — 3 operation(s) for namespaces.
+- [Apache Pulsar Subscriptions API](https://apis.io/apis/apache-pulsar/apache-pulsar-subscriptions-api/) — The Subscriptions API from Apache Pulsar — 2 operation(s) for subscriptions.
+- [Apache Pulsar Tenants API](https://apis.io/apis/apache-pulsar/apache-pulsar-tenants-api/) — The Tenants API from Apache Pulsar — 2 operation(s) for tenants.
+- [Apache Pulsar Topics API](https://apis.io/apis/apache-pulsar/apache-pulsar-topics-api/) — The Topics API from Apache Pulsar — 4 operation(s) for topics.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Apache Pulsar Admin REST API
+Event-driven and webhook contracts.
 
-The Pulsar Admin API provides REST endpoints for managing tenants, namespaces, topics, subscriptions, functions, connectors, and cluster configuration.
+- [Apache Pulsar Messaging API](https://apis.io/asyncapis/apache-pulsar/pulsar-messaging/)
 
-- **Human URL:** [https://pulsar.apache.org/admin-rest-api/](https://pulsar.apache.org/admin-rest-api/)
-- **Base URL:** `http://localhost:8080/admin/v2`
+#### Event channels (2)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Administration
-- Multi-Tenant
-- REST
+- [non-persistent/{tenant}/{namespace}/{topic}](https://apis.io/channels/apache-pulsar/non-persistent-tenant-namespace-topic/)
+- [persistent/{tenant}/{namespace}/{topic}](https://apis.io/channels/apache-pulsar/persistent-tenant-namespace-topic/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://pulsar.apache.org/admin-rest-api/)
-- [OpenAPI](openapi/pulsar-admin.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pulsar-admin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pulsar-admin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Apache Pulsar Messaging API
+- [Apache Pulsar Agentic Access](https://apis.io/agentic-access/apache-pulsar/apache-pulsar-agentic-access/)
 
-Pulsar messaging protocol for producing and consuming messages on topics, with support for multiple subscription types (Exclusive, Shared, Failover, Key_Shared), schema enforcement, and both persistent and non-persistent topics.
+#### JSON Schema (8)
 
-- **Human URL:** [https://pulsar.apache.org/docs/next/client-libraries/](https://pulsar.apache.org/docs/next/client-libraries/)
+The data models the API reads and writes.
 
-#### Tags
+- [ClusterData](https://apis.io/schemas/apache-pulsar/apache-pulsar-cluster-data/)
+- [FunctionConfig](https://apis.io/schemas/apache-pulsar/apache-pulsar-function-config/)
+- [Policies](https://apis.io/schemas/apache-pulsar/apache-pulsar-policies/)
+- [PulsarMessage](https://apis.io/schemas/apache-pulsar/apache-pulsar-pulsar-message/)
+- [RetentionPolicies](https://apis.io/schemas/apache-pulsar/apache-pulsar-retention-policies/)
+- [TenantInfo](https://apis.io/schemas/apache-pulsar/apache-pulsar-tenant-info/)
+- [TopicStats](https://apis.io/schemas/apache-pulsar/apache-pulsar-topic-stats/)
+- [Apache Pulsar Message](https://apis.io/schemas/apache-pulsar/pulsar-message/)
 
-- Messaging
-- Pub-Sub
-- Streaming
+#### JSON Structure (7)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [Documentation](https://pulsar.apache.org/docs/next/client-libraries/)
-- [AsyncAPI](asyncapi/pulsar-messaging.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [JSON Schema](json-schema/pulsar-message.json) — [JSON Schema](https://json-schema.org/specification)
-- [Postman Collection](collections/pulsar-admin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pulsar-admin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Apache Pulsar Cluster Data Structure](https://apis.io/json-structure/apache-pulsar/apache-pulsar-cluster-data-structure/)
+- [Apache Pulsar Function Config Structure](https://apis.io/json-structure/apache-pulsar/apache-pulsar-function-config-structure/)
+- [Apache Pulsar Policies Structure](https://apis.io/json-structure/apache-pulsar/apache-pulsar-policies-structure/)
+- [Apache Pulsar Pulsar Message Structure](https://apis.io/json-structure/apache-pulsar/apache-pulsar-pulsar-message-structure/)
+- [Apache Pulsar Retention Policies Structure](https://apis.io/json-structure/apache-pulsar/apache-pulsar-retention-policies-structure/)
+- [Apache Pulsar Tenant Info Structure](https://apis.io/json-structure/apache-pulsar/apache-pulsar-tenant-info-structure/)
+- [Apache Pulsar Topic Stats Structure](https://apis.io/json-structure/apache-pulsar/apache-pulsar-topic-stats-structure/)
 
-## Common Properties
+#### JSON-LD (1)
 
-- [GitHub Organization](https://github.com/apache/pulsar)
+Linked-data contexts for the provider's vocabulary.
+
+- [Apache Pulsar Context](https://apis.io/jsonld/apache-pulsar/apache-pulsar-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Apache Pulsar Vocabulary](https://apis.io/vocabularies/apache-pulsar/apache-pulsar-vocabulary/)
+
+#### Examples (7)
+
+Example requests and responses.
+
+- [Apache Pulsar Cluster Data Example](https://apis.io/examples/apache-pulsar/apache-pulsar-cluster-data-example/)
+- [Apache Pulsar Function Config Example](https://apis.io/examples/apache-pulsar/apache-pulsar-function-config-example/)
+- [Apache Pulsar Policies Example](https://apis.io/examples/apache-pulsar/apache-pulsar-policies-example/)
+- [Apache Pulsar Pulsar Message Example](https://apis.io/examples/apache-pulsar/apache-pulsar-pulsar-message-example/)
+- [Apache Pulsar Retention Policies Example](https://apis.io/examples/apache-pulsar/apache-pulsar-retention-policies-example/)
+- [Apache Pulsar Tenant Info Example](https://apis.io/examples/apache-pulsar/apache-pulsar-tenant-info-example/)
+- [Apache Pulsar Topic Stats Example](https://apis.io/examples/apache-pulsar/apache-pulsar-topic-stats-example/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Apache Pulsar Admin REST Brokers API](https://apis.io/collections/apache-pulsar/open-apache-pulsar-brokers-api/)
+- [Apache Pulsar Admin REST Brokers Clusters API](https://apis.io/collections/apache-pulsar/open-apache-pulsar-clusters-api/)
+- [Apache Pulsar Admin REST Brokers Functions API](https://apis.io/collections/apache-pulsar/open-apache-pulsar-functions-api/)
+- [Apache Pulsar Admin REST Brokers Namespaces API](https://apis.io/collections/apache-pulsar/open-apache-pulsar-namespaces-api/)
+- [Apache Pulsar Admin REST Brokers Subscriptions API](https://apis.io/collections/apache-pulsar/open-apache-pulsar-subscriptions-api/)
+- [Apache Pulsar Admin REST Brokers Tenants API](https://apis.io/collections/apache-pulsar/open-apache-pulsar-tenants-api/)
+- [Apache Pulsar Admin REST Brokers Topics API](https://apis.io/collections/apache-pulsar/open-apache-pulsar-topics-api/)
+- [Apache Pulsar Admin REST API](https://apis.io/collections/apache-pulsar/open-pulsar-admin/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Apache Pulsar — asyncapi rules](https://apis.io/rules/apache-pulsar/apache-pulsar-asyncapi-spectral-rules/)
+- [Apache Pulsar — jsonschema rules](https://apis.io/rules/apache-pulsar/apache-pulsar-jsonschema-spectral-rules/)
+- [Apache Pulsar API Rules](https://apis.io/rules/apache-pulsar/apache-pulsar-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apache Pulsar Domain Security](https://apis.io/security/apache-pulsar/apache-pulsar-domain-security/)
+- [Apache Pulsar Vulnerability Disclosure](https://apis.io/security/apache-pulsar/apache-pulsar-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Apache Pulsar Plans Pricing](https://apis.io/plans/apache-pulsar/apache-pulsar-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Apache Pulsar Rate Limits](https://apis.io/rate-limits/apache-pulsar/apache-pulsar-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Apache Pulsar Finops](https://apis.io/finops/apache-pulsar/apache-pulsar-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.apache.org/)
 - [Documentation](https://pulsar.apache.org/)
-- [Spectral Rules](rules/apache-pulsar-spectral-rules.yml)
-- [Vocabulary](vocabulary/apache-pulsar-vocabulary.yaml)
-- [JSON-LD](json-ld/apache-pulsar-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Integrations](https://pulsar.apache.org/ecosystem/)
+- [Blog](https://pulsar.apache.org/blog/rss.xml)
+- [GitHub](https://github.com/apache/pulsar)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
+**Kin Score 29.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 53.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 7.9 |
+
+**Agent readiness 16.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apache-pulsar/](https://apis.io/providers/apache-pulsar/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apache Pulsar: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apache-pulsar/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
